@@ -1,0 +1,21 @@
+{% load static %}
+
+<nav>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link d-flex align-items-center link-light link-opacity-50-hover" href="{% url 'index' %}">
+        <img src="{% static 'logo.png' %}" alt="Логотип" width="80" height="50">
+        <span class="fs-2 fw-bold text-nowrap ms-3">Менеджер задач</span>
+      </a>
+    </li>
+    <li class="nav-item d-flex align-items-center">
+      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'users' %}">Пользователи</a>
+    </li>
+    <li class="nav-item d-flex align-items-center">
+      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'login' %}">Вход</a>
+    </li>
+    <li class="nav-item d-flex align-items-center">
+      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'sign_up' %}">Регистрация</a>
+    </li>
+  </ul>
+</nav>

@@ -1,13 +1,41 @@
+{% load django_bootstrap5 %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ru-ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Simple Django task manager" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Django, task manager">
+    <meta name="description" content="Simple Django task manager">
     <title>{% block title %}Менеджер задач{% endblock %}</title>
-  </head>
+    <link rel="icon" href="{% static 'logo.png' %}" type="image/png" sizes="52x32">
+    <!-- Styles -->
+    {% bootstrap_css %}
+</head>
 
-  <body class="d-flex flex-column min-vh-100">
-    {% block content %}{% endblock %}
-  </body>
+<body class="min-vh-100 d-flex flex-column">
+  <header class="bg-dark flex-shrink-0">
+      {% include 'layouts/header.html' %}
+  </header>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <main class="flex-grow-1">
+      <div class="container-lg mt-3">
+          {% block content %}{% endblock %}
+      </div>
+  </main>
+
+  <footer class="border-top py-3 d-flex justify-content-center flex-shrink-0">
+      {% include 'layouts/footer.html' %}
+  </footer>
+
+  <!-- Scripts -->
+  {% bootstrap_javascript %}
+</body>
 </html>
