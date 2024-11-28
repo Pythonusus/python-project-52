@@ -19,11 +19,7 @@
       {% include 'layouts/header.html' %}
   </header>
 
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
-    {% endfor %}
-  {% endif %}
+  {% bootstrap_messages %}
 
   <main class="flex-grow-1">
       <div class="container-lg mt-3">
