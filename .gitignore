@@ -11,3 +11,4 @@ coverage.xml
 .project
 db.sqlite3
 staticfiles/
+.mypy_cache/
