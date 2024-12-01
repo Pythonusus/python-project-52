@@ -26,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#c54v$vni1%87mla40l#y6wp_rp7!dq4221f+c#urheb-^hko-'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', False)
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -98,11 +98,12 @@ DATABASES = {
 
 DATABASE_URL = os.getenv('DATABASE_URL')
 
-DATABASES['default'] = dj_database_url.config(
-    default=DATABASE_URL,
-    conn_max_age=600,
-    conn_health_checks=True,
-)
+if DATABASE_URL:
+    DATABASES['default'] = dj_database_url.config(
+        default=DATABASE_URL,
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 
 
 # Password validation
