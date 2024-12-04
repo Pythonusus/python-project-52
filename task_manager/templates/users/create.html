@@ -4,12 +4,12 @@
 
 {% block content %}
 <div class="container wrapper flex-grow-1">
-  <h1 class="my-4">Регистрация</h1>
+  <h1 class="my-4">{{ create_user.registration }}</h1>
 
   <form class="form" action="{% url 'user_create' %}" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% bootstrap_button button_type="submit" content="Зарегистрировать" %}
+    {% bootstrap_button button_type="submit" content=create_user.register %}
   </form>
 </div>
 {% endblock %}

@@ -4,18 +4,18 @@
   <ul class="nav">
     <li class="nav-item">
       <a class="nav-link d-flex align-items-center link-light link-opacity-50-hover" href="{% url 'index' %}">
-        <img src="{% static 'logo.png' %}" alt="Логотип" width="80" height="50">
-        <span class="fs-2 fw-bold text-nowrap ms-3">Менеджер задач</span>
+        <img src="{% static 'logo.png' %}" alt={{ base.logo_alt }} width="80" height="50">
+        <span class="fs-2 fw-bold text-nowrap ms-3">{{ base.task_manager }}</span>
       </a>
     </li>
     <li class="nav-item d-flex align-items-center">
-      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'users_index' %}">Пользователи</a>
+      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'users_index' %}">{{ base.users }}</a>
     </li>
     <li class="nav-item d-flex align-items-center">
-      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'login' %}">Вход</a>
+      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'login' %}">{{ base.login }}</a>
     </li>
     <li class="nav-item d-flex align-items-center">
-      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'user_create' %}">Регистрация</a>
+      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'user_create' %}">{{ base.register }}</a>
     </li>
   </ul>
 </nav>

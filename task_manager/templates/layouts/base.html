@@ -1,14 +1,16 @@
 {% load django_bootstrap5 %}
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
-<html lang="ru-ru">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Django, task manager">
     <meta name="description" content="Simple Django task manager">
-    <title>{% block title %}Менеджер задач{% endblock %}</title>
+    <title>{% block title %}{{ base.task_manager }}{% endblock %}</title>
     <link rel="icon" href="{% static 'logo.png' %}" type="image/png" sizes="52x32">
     <!-- Styles -->
     {% bootstrap_css %}
