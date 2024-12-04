@@ -7,6 +7,15 @@ lint:
 pylint:
 	poetry run pylint task_manager
 
+messages-ru:
+	poetry run django-admin makemessages -l ru
+
+messages-en:
+	poetry run django-admin makemessages -l en
+
+compile-messages:
+	poetry run django-admin compilemessages
+
 static: install
 	poetry run python manage.py collectstatic
 
@@ -24,4 +33,4 @@ PORT := 8000
 start:
 	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) task_manager.wsgi
 
-.PHONY: install lint pylint static migrate dev build start
+.PHONY: install lint pylint messages-ru messages-en compile-messages static migrate dev build start
