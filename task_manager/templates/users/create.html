@@ -1,5 +1,15 @@
 {% extends 'layouts/base.html' %}
+{% load django_bootstrap5 %}
+
 
 {% block content %}
-<h1>This is a sign up page!</h1>
+<div class="container wrapper flex-grow-1">
+  <h1 class="my-4">Регистрация</h1>
+
+  <form class="form" action="{% url 'user_create' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Зарегистрировать" %}
+  </form>
+</div>
 {% endblock %}
