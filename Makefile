@@ -16,6 +16,9 @@ messages-en:
 compile-messages:
 	poetry run django-admin compilemessages
 
+shell:
+	poetry run python manage.py shell_plus
+
 static: install
 	poetry run python manage.py collectstatic
 
@@ -33,4 +36,4 @@ PORT := 8000
 start:
 	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) task_manager.wsgi
 
-.PHONY: install lint pylint messages-ru messages-en compile-messages static migrate dev build start
+.PHONY: install lint pylint messages-ru messages-en compile-messages shell static migrate dev build start
