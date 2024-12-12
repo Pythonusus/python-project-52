@@ -17,6 +17,7 @@ django-bootstrap5 = "^24.3"
 whitenoise = "^6.8.2"
 dj-database-url = "^2.3.0"
 python-dotenv = "^1.0.1"
+psycopg2-binary = "^2.9.10"
 
 
 [tool.poetry.group.dev.dependencies]
