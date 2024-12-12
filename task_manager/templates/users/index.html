@@ -1,5 +1,31 @@
 {% extends 'layouts/base.html' %}
+{% load django_bootstrap5 %}
 
 {% block content %}
-<h1>This is a users page!</h1>
+<h1>{{ users_index.users }}</h1>
+<table class="table table-bordered table-hover text-nowrap" data-test="urls">
+  <thead>
+  <tr>
+    <th>{{ users_index.id }}</th>
+    <th>{{ users_index.username }}</th>
+    <th>{{ users_index.full_name }}</th>
+    <th>{{ users_index.created_at }}</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.full_name }}</td>
+        <td>{{ user.created_at }}</td>
+        <td class="d-flex flex-column">
+          <a href="{% url 'user_update' user.id %}" class="d-inline-block">{{ users_index.edit }}</a>
+          <a href="{% url 'user_delete' user.id %}" class="d-inline-block">{{ users_index.delete }}</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
