@@ -1,5 +1,14 @@
 {% extends 'layouts/base.html' %}
+{% load django_bootstrap5 %}
 
 {% block content %}
-<h1>This is a login page!</h1>
+<div class="container wrapper flex-grow-1">
+  <h1 class="my-4">{{ base.login }}</h1>
+
+  <form class="form" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content=login.login_button %}
+  </form>
+</div>
 {% endblock %}
