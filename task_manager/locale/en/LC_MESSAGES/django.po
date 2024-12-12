@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-04 23:14+0300\n"
+"POT-Creation-Date: 2024-12-12 11:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "Task Manager"
 msgid "Logo"
 msgstr "Logo"
 
-#: task_manager/texts.py:7
+#: task_manager/texts.py:7 task_manager/texts.py:41
 msgid "Users"
 msgstr "Users"
 
@@ -34,18 +34,116 @@ msgstr "Users"
 msgid "Login"
 msgstr "Login"
 
-#: task_manager/texts.py:9 task_manager/texts.py:16
+#: task_manager/texts.py:9 task_manager/texts.py:20
 msgid "Register"
 msgstr "Register"
 
 #: task_manager/texts.py:10
+#, fuzzy
+#| msgid "Logo"
+msgid "Logout"
+msgstr "Logout"
+
+#: task_manager/texts.py:11
+msgid "Statuses"
+msgstr "Statuses"
+
+#: task_manager/texts.py:12
+msgid "Labels"
+msgstr "Labels"
+
+#: task_manager/texts.py:13
+msgid "Tasks"
+msgstr "Tasks"
+
+#: task_manager/texts.py:14
 msgid "Author"
 msgstr "Author"
 
-#: task_manager/texts.py:15
+#: task_manager/texts.py:19
 msgid "Registration"
 msgstr "Registration"
 
-#: task_manager/texts.py:17
+#: task_manager/texts.py:21
 msgid "User registered successfully"
 msgstr "User registered successfully"
+
+#: task_manager/texts.py:26
+msgid "Edit user"
+msgstr "Edit user"
+
+#: task_manager/texts.py:27
+msgid "Update"
+msgstr "Update"
+
+#: task_manager/texts.py:28
+msgid "User updated successfully"
+msgstr "User updated successfully"
+
+#: task_manager/texts.py:32
+msgid "Delete user"
+msgstr "Delete user"
+
+#: task_manager/texts.py:33
+msgid "Are you sure you want to delete this user?"
+msgstr "Are you sure you want to delete"
+
+#: task_manager/texts.py:34
+msgid "Delete anyway"
+msgstr "Delete anyway"
+
+#: task_manager/texts.py:35
+msgid "Permission required"
+msgstr "You don't have permission to change another user."
+
+#: task_manager/texts.py:36
+msgid "Authentication required"
+msgstr "You are not authenticated! Please, log in."
+
+#: task_manager/texts.py:37
+msgid "User deleted successfully"
+msgstr "User deleted successfully"
+
+#: task_manager/texts.py:42
+msgid "ID"
+msgstr "ID"
+
+#: task_manager/texts.py:43
+msgid "Username"
+msgstr "Username"
+
+#: task_manager/texts.py:44
+msgid "Full name"
+msgstr "Full name"
+
+#: task_manager/texts.py:45
+msgid "Created at"
+msgstr "Created at"
+
+#: task_manager/texts.py:46
+msgid "Edit"
+msgstr "Edit"
+
+#: task_manager/texts.py:47
+msgid "Delete"
+msgstr "Delete"
+
+#: task_manager/texts.py:51
+msgid "Log in"
+msgstr "Log in"
+
+#: task_manager/texts.py:52
+msgid "You are logged in"
+msgstr "You are logged in"
+
+#: task_manager/texts.py:56
+msgid "You are logged out"
+msgstr "You are logged out"
+
+#: task_manager/users/models.py:8
+msgid "first name"
+msgstr "First name"
+
+#: task_manager/users/models.py:9
+msgid "last name"
+msgstr "Last name"
