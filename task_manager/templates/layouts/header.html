@@ -11,11 +11,29 @@
     <li class="nav-item d-flex align-items-center">
       <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'users_index' %}">{{ base.users }}</a>
     </li>
+    {% if user.is_authenticated %}
+    <li class="nav-item d-flex align-items-center">
+      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'statuses_index' %}">{{ base.statuses }}</a>
+    </li>
+    <li class="nav-item d-flex align-items-center">
+      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'labels_index' %}">{{ base.labels }}</a>
+    </li>
+    <li class="nav-item d-flex align-items-center">
+      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'tasks_index' %}">{{ base.tasks }}</a>
+    </li>
+    <li class="nav-item d-flex align-items-center">
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button class="nav-link link-info link-opacity-50-hover fs-3" type="submit" class="btn btn-dark">{{base.logout}}</button>
+      </form>
+    </li>
+    {% else %}
     <li class="nav-item d-flex align-items-center">
       <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'login' %}">{{ base.login }}</a>
     </li>
     <li class="nav-item d-flex align-items-center">
-      <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'user_create' %}">{{ base.register }}</a>
+        <a class="nav-link link-info link-opacity-50-hover fs-3" href="{% url 'user_create' %}">{{ base.register }}</a>
     </li>
+    {% endif %}
   </ul>
 </nav>
