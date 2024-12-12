@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf import settings
 from task_manager import views
 
 urlpatterns = [
@@ -29,3 +29,11 @@ urlpatterns = [
     path('tasks/', include('task_manager.tasks.urls')),
     path('admin/', admin.site.urls),
 ]
+
+# Debug toolbar
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
