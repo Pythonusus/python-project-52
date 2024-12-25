@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 import task_manager.texts as texts
-from task_manager.users.forms import UserForm
+from task_manager.users.forms import UserForm, UserUpdateForm
 from task_manager.users.models import User
 
 
@@ -38,7 +38,7 @@ class UserUpdateView(SuccessMessageMixin,
                      PermissionRequiredMixin,
                      UpdateView):
     model = User
-    form_class = UserForm
+    form_class = UserUpdateForm
     template_name = 'users/update.html'
     permission_required = 'auth.change_user'
 
