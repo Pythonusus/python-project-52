@@ -18,8 +18,8 @@
       <tr>
         <td>{{ user.id }}</td>
         <td>{{ user.username }}</td>
-        <td>{{ user.full_name }}</td>
-        <td>{{ user.created_at }}</td>
+        <td>{{ user.get_full_name }}</td>
+        <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
         <td class="d-flex flex-column">
           <a href="{% url 'user_update' user.id %}" class="d-inline-block">{{ users_index.edit }}</a>
           <a href="{% url 'user_delete' user.id %}" class="d-inline-block">{{ users_index.delete }}</a>

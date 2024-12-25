@@ -7,6 +7,9 @@ lint:
 pylint:
 	poetry run pylint task_manager
 
+test:
+	poetry run python manage.py test
+
 messages-ru:
 	poetry run django-admin makemessages -l ru
 
