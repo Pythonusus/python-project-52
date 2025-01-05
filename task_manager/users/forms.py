@@ -17,6 +17,12 @@ class UserForm(UserCreationForm):
 
 
 class UserUpdateForm(UserForm):
+    """
+    Form for updating a user.
+    Built in UserUpdateForm from django.contrib.auth.forms is not used
+    because it doesn't allow to update password together with user profile,
+    which is required by client specification.
+    """
     class Meta:
         model = get_user_model()
         fields = [
@@ -27,10 +33,19 @@ class UserUpdateForm(UserForm):
             'password2',
         ]
 
-    # Using clean_username implementation from UserCreationForm
-    # The only difference is that we exclude the current instance from the query
     def clean_username(self):
-        """Reject usernames that differ only in case."""
+        """
+        Validate the username field to ensure uniqueness regardless of case.
+        Using clean_username implementation from UserCreationForm.
+        The only difference is that we exclude current instance from the query.
+
+        Returns:
+            str: The validated username if it's unique (case-insensitive).
+
+        Raises:
+            ValidationError: If another user already exists with the same
+            username (ignoring case), excluding the current instance.
+        """
         username = self.cleaned_data.get("username")
         if (
             username

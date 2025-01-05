@@ -22,6 +22,11 @@ class UsersIndexView(ListView):
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
+    """
+    Create a new user.
+    Redirects to the login page after successful creation.
+    Shows a success message after successful creation.
+    """
     model = get_user_model()
     form_class = UserForm
     template_name = 'users/create.html'
@@ -37,6 +42,11 @@ class UserUpdateView(SuccessMessageMixin,
                      LoginRequiredMixin,
                      PermissionRequiredMixin,
                      UpdateView):
+    """
+    Update a user.
+    Redirects to the users index page after successful update.
+    Shows a success message after successful update.
+    """
     model = get_user_model()
     form_class = UserUpdateForm
     template_name = 'users/update.html'
@@ -51,9 +61,18 @@ class UserUpdateView(SuccessMessageMixin,
     }
 
     def has_permission(self):
+        """
+        Overriding has_permission method from PermissionRequiredMixin.
+        Allows updating only the current user.
+        """
         return self.get_object().id == self.request.user.id
 
     def handle_no_permission(self):
+        """
+        Overriding handle_no_permission method from AccessMixin.
+        Handles the case when the user is not authenticated or doesn't have
+        permission to update the user.
+        """
         if not self.request.user.is_authenticated:
             messages.error(self.request, texts.auth['auth_required'])
             return redirect(reverse_lazy('login'))
@@ -66,6 +85,11 @@ class UserDeleteView(SuccessMessageMixin,
                      LoginRequiredMixin,
                      PermissionRequiredMixin,
                      DeleteView):
+    """
+    Delete a user.
+    Redirects to the users index page after successful deletion.
+    Shows a success message after successful deletion.
+    """
     model = get_user_model()
     template_name = 'users/delete.html'
     permission_required = 'auth.delete_user'
@@ -79,9 +103,18 @@ class UserDeleteView(SuccessMessageMixin,
     }
 
     def has_permission(self):
+        """
+        Overriding has_permission method from PermissionRequiredMixin.
+        Allows deleting only the current user.
+        """
         return self.get_object().id == self.request.user.id
 
     def handle_no_permission(self):
+        """
+        Overriding handle_no_permission method from AccessMixin.
+        Handles the case when the user is not authenticated or doesn't have
+        permission to delete the user.
+        """
         if not self.request.user.is_authenticated:
             messages.error(self.request, texts.auth['auth_required'])
             return redirect(reverse_lazy('login'))
