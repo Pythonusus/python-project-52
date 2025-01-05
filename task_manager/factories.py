@@ -1,3 +1,6 @@
+"""
+Factories for generating test data.
+"""
 import factory
 import factory.random
 from task_manager.users.models import User

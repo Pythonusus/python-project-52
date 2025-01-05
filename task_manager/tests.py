@@ -35,7 +35,7 @@ class TestIndex(SetUpMixin, TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template_name='index.html')
 
-        # Check common elements
+        # Check logged in/logged out common elements
         self.assertContains(response, texts.base['logo_alt'])
         for url in self.common_urls:
             self.assertContains(response, reverse_lazy(url))

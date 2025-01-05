@@ -16,6 +16,11 @@ class IndexView(TemplateView):
 
 
 class UserLoginView(SuccessMessageMixin, LoginView):
+    """
+    Login user using Django's built-in authentication form.
+    Redirects to the index page after successful login.
+    Shows a success message after successful login.
+    """
     template_name = 'login.html'
     form_class = AuthenticationForm
     success_message = texts.login['login_success']
@@ -27,6 +32,11 @@ class UserLoginView(SuccessMessageMixin, LoginView):
 
 
 class UserLogoutView(LogoutView):
+    """
+    Logout user using Django's built-in logout view.
+    Redirects to the index page after successful logout.
+    Shows an info message after successful logout.
+    """
     next_page = reverse_lazy('index')
     extra_context = {
         'base': texts.base,
