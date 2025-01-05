@@ -8,11 +8,11 @@ from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 import task_manager.texts as texts
 from task_manager.users.forms import UserForm, UserUpdateForm
-from task_manager.users.models import User
+from django.contrib.auth import get_user_model
 
 
 class UsersIndexView(ListView):
-    model = User
+    model = get_user_model()
     template_name = 'users/index.html'
     context_object_name = 'users'
     extra_context = {
@@ -22,7 +22,7 @@ class UsersIndexView(ListView):
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
-    model = User
+    model = get_user_model()
     form_class = UserForm
     template_name = 'users/create.html'
     success_url = reverse_lazy('login')
@@ -37,7 +37,7 @@ class UserUpdateView(SuccessMessageMixin,
                      LoginRequiredMixin,
                      PermissionRequiredMixin,
                      UpdateView):
-    model = User
+    model = get_user_model()
     form_class = UserUpdateForm
     template_name = 'users/update.html'
     permission_required = 'auth.change_user'
@@ -66,7 +66,7 @@ class UserDeleteView(SuccessMessageMixin,
                      LoginRequiredMixin,
                      PermissionRequiredMixin,
                      DeleteView):
-    model = User
+    model = get_user_model()
     template_name = 'users/delete.html'
     permission_required = 'auth.delete_user'
 

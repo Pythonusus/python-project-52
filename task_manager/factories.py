@@ -3,7 +3,7 @@ Factories for generating test data.
 """
 import factory
 import factory.random
-from task_manager.users.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 
 """
@@ -16,7 +16,7 @@ factory.random.reseed_random(SEED)
 
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = User
+        model = get_user_model()
 
     username = factory.Faker('user_name')
     first_name = factory.Faker('first_name')
