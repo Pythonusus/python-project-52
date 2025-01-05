@@ -25,6 +25,9 @@ shell:
 static: install
 	poetry run python manage.py collectstatic
 
+createsuperuser:
+	poetry run python manage.py createsuperuser
+
 migrate:
 	poetry run python manage.py makemigrations
 	poetry run python manage.py migrate
@@ -39,4 +42,4 @@ PORT := 8000
 start:
 	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) task_manager.wsgi
 
-.PHONY: install lint pylint messages-ru messages-en compile-messages shell static migrate dev build start
+.PHONY: install lint pylint messages-ru messages-en compile-messages shell static createsuperuser migrate dev build start
