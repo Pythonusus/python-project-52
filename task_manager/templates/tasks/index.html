@@ -2,6 +2,37 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<h1>Tasks page!</h1>
+<h1 class="my-4">{{ tasks_index.tasks }}</h1>
+<a href="{% url 'task_create' %}" class="btn btn-primary mb-3">{{ tasks_index.create_task }}</a>
+
+<table class="table table-bordered table-hover text-nowrap" data-test="urls">
+  <thead>
+  <tr>
+    <th>{{ tasks_index.id }}</th>
+    <th>{{ tasks_index.name }}</th>
+    <th>{{ tasks_index.status }}</th>
+    <th>{{ tasks_index.author }}</th>
+    <th>{{ tasks_index.executor }}</th>
+    <th>{{ tasks_index.created_at }}</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for task in tasks %}
+      <tr>
+        <td>{{ task.id }}</td>
+        <td>{{ task.name }}</td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.author }}</td>
+        <td>{{ task.executor }}</td>
+        <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
+        <td class="d-flex flex-column">
+          <a href="{% url 'task_update' task.id %}" class="d-inline-block">{{ tasks_index.edit }}</a>
+          <a href="{% url 'task_delete' task.id %}" class="d-inline-block">{{ tasks_index.delete }}</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
 
