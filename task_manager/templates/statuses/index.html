@@ -2,5 +2,30 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<h1>Statuses page!</h1>
+<h1 class="my-4">{{ statuses_index.statuses }}</h1>
+<a href="{% url 'status_create' %}" class="btn btn-primary mb-3">{{ statuses_index.create_status }}</a>
+
+<table class="table table-bordered table-hover text-nowrap" data-test="urls">
+  <thead>
+  <tr>
+    <th>{{ statuses_index.id }}</th>
+    <th>{{ statuses_index.name }}</th>
+    <th>{{ statuses_index.created_at }}</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for status in statuses %}
+      <tr>
+        <td>{{ status.id }}</td>
+        <td>{{ status.name }}</td>
+        <td>{{ status.created_at|date:"d.m.Y H:i" }}</td>
+        <td class="d-flex flex-column">
+          <a href="{% url 'status_update' status.id %}" class="d-inline-block">{{ statuses_index.edit }}</a>
+          <a href="{% url 'status_delete' status.id %}" class="d-inline-block">{{ statuses_index.delete }}</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

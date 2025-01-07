@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+  <h1 class="my-4">{{ create_status.create_status }}</h1>
+
+  <form class="form" action="{% url 'status_create' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content=create_status.create %}
+  </form>
+</div>
+{% endblock %}
