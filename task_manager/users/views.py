@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
 from django.contrib.messages.views import SuccessMessageMixin
@@ -8,7 +9,6 @@ from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 import task_manager.texts as texts
 from task_manager.users.forms import UserForm, UserUpdateForm
-from django.contrib.auth import get_user_model
 
 
 class UsersIndexView(ListView):
@@ -43,7 +43,7 @@ class UserUpdateView(SuccessMessageMixin,
                      PermissionRequiredMixin,
                      UpdateView):
     """
-    Update a user.
+    Update a user. Users cannot update other users.
     Redirects to the users index page after successful update.
     Shows a success message after successful update.
     """
@@ -86,7 +86,7 @@ class UserDeleteView(SuccessMessageMixin,
                      PermissionRequiredMixin,
                      DeleteView):
     """
-    Delete a user.
+    Delete a user. Users cannot delete other users.
     Redirects to the users index page after successful deletion.
     Shows a success message after successful deletion.
     """
