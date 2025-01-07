@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Install dependencies
-make install
+# Install only production dependencies
+make install-prod
 
 # Collect static files
 make static
