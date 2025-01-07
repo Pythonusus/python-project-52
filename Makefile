@@ -1,6 +1,9 @@
 install:
 	poetry install
 
+install-prod:
+	poetry install --no-dev
+
 lint:
 	poetry run flake8 task_manager
 
@@ -42,4 +45,4 @@ PORT := 8000
 start:
 	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) task_manager.wsgi
 
-.PHONY: install lint pylint messages-ru messages-en compile-messages shell static createsuperuser migrate dev build start
+.PHONY: install install-prod lint pylint messages-ru messages-en compile-messages shell static createsuperuser migrate dev build start
