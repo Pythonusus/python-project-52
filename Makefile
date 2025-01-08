@@ -36,7 +36,7 @@ migrate:
 	poetry run python manage.py migrate
 
 dev: migrate
-	poetry run python manage.py runserver
+	DEBUG=True poetry run python manage.py runserver
 
 build:
 	./build.sh
