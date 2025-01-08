@@ -1,10 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.test.client import Client
 from django.urls import reverse_lazy
 
-import task_manager.texts as texts
+from task_manager import texts
 from task_manager.factories import UserFactory
-from django.contrib.auth import get_user_model
 
 
 class TestUsersIndex(TestCase):

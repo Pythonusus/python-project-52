@@ -1,7 +1,7 @@
 from django.test import Client, TestCase
 from django.urls import reverse_lazy
 
-import task_manager.texts as texts
+from task_manager import texts
 from task_manager.factories import StatusFactory, TaskFactory, UserFactory
 from task_manager.statuses.models import Status
 
