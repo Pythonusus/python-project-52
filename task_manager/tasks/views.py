@@ -14,6 +14,8 @@ from task_manager.tasks.models import Task
 class TasksIndexView(LoginRequiredMixin, ListView):
     model = Task
     template_name = 'tasks/index.html'
+    context_object_name = 'tasks'
+    login_url = reverse_lazy('login')
     extra_context = {
         'base': texts.base,
         'tasks_index': texts.tasks_index,
