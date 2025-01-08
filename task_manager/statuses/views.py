@@ -15,6 +15,7 @@ class StatusesIndexView(LoginRequiredMixin, ListView):
     model = Status
     template_name = 'statuses/index.html'
     context_object_name = 'statuses'
+    login_url = reverse_lazy('login')
     extra_context = {
         'base': texts.base,
         'statuses_index': texts.statuses_index,
@@ -32,6 +33,7 @@ class StatusCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     template_name = 'statuses/create.html'
     success_url = reverse_lazy('statuses_index')
     success_message = texts.create_status['create_success']
+    login_url = reverse_lazy('login')
     extra_context = {
         'base': texts.base,
         'create_status': texts.create_status,
@@ -49,6 +51,7 @@ class StatusUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     template_name = 'statuses/update.html'
     success_url = reverse_lazy('statuses_index')
     success_message = texts.update_status['update_success']
+    login_url = reverse_lazy('login')
     extra_context = {
         'base': texts.base,
         'update_status': texts.update_status,
@@ -60,17 +63,23 @@ class StatusDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'statuses/delete.html'
     success_url = reverse_lazy('statuses_index')
     success_message = texts.delete_status['delete_success']
+    login_url = reverse_lazy('login')
     extra_context = {
         'base': texts.base,
         'delete_status': texts.delete_status,
     }
 
-    def delete(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
+        """
+        Override the post method to handle the ProtectedError exception.
+        If a ProtectedError occurs, show an error message and redirect to
+        the statuses index page.
+        """
         try:
-            return super().delete(request, *args, **kwargs)
+            return super().post(request, *args, **kwargs)
         except ProtectedError:
             messages.error(
                 request,
                 texts.delete_status['delete_error']
             )
-            return redirect('statuses_index')
+            return redirect(self.success_url)
