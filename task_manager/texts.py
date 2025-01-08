@@ -9,7 +9,7 @@ base = {
     'logo_alt': _('Logo'),
     'users': _('Users'),
     'login': _('Login'),
-    'register': _('Register'),
+    'registration': _('Registration'),
     'logout': _('Logout'),
     'statuses': _('Statuses'),
     'labels': _('Labels'),
