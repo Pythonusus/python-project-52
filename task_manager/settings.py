@@ -137,8 +137,8 @@ AUTH_USER_MODEL = 'users.User'
 LANGUAGE_CODE = os.getenv('LANGUAGE_CODE', 'ru-ru')
 
 LANGUAGES = (
-    ('en-us', 'English'),
     ('ru-ru', 'Russian'),
+    ('en-us', 'English'),
 )
 
 USE_I18N = True
