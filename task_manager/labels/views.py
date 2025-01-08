@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-import task_manager.texts as texts
+from task_manager import texts
 
 
 class LabelsIndexView(TemplateView):

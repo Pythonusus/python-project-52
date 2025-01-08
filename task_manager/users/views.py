@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-import task_manager.texts as texts
+from task_manager import texts
 from task_manager.users.forms import UserForm, UserUpdateForm
 
 
