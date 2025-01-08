@@ -14,7 +14,7 @@ class SetUpMixin:
         self.client.force_login(self.user)
 
 
-class TestStatusesCRUD_with_no_login(SetUpMixin, TestCase):
+class TestStatusesCrudWithNoLogin(SetUpMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.client.logout()
