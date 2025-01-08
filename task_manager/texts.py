@@ -17,6 +17,12 @@ base = {
     'author': _('Author'),
 }
 
+# Texts for user models
+user_model = {
+    'first_name': _('First name'),
+    'last_name': _('Last name'),
+}
+
 # Texts for the user creation page
 create_user = {
     'registration': _('Registration'),
@@ -67,6 +73,12 @@ logout = {
     'logout_info': _('You are logged out'),
 }
 
+# Texts for the status models
+status_model = {
+    'name': _('Name'),
+    'created_at': _('Created at'),
+}
+
 # Texts for the statuses index page
 statuses_index = {
     'statuses': _('Statuses'),
@@ -99,6 +111,16 @@ delete_status = {
     'delete_anyway': _('Delete anyway'),
     'delete_success': _('Status deleted successfully'),
     'delete_error': _('Status cannot be deleted because it is in use'),
+}
+
+# Texts for the tasks model
+task_model = {
+    'name': _('Name'),
+    'description': _('Description'),
+    'status': _('Status'),
+    'author': _('Author'),
+    'executor': _('Executor'),
+    'created_at': _('Created at'),
 }
 
 # Texts for the tasks index page
