@@ -4,7 +4,13 @@ from django.contrib.auth.mixins import (LoginRequiredMixin,
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
 from task_manager import texts
 from task_manager.tasks.forms import TaskForm
@@ -95,8 +101,13 @@ class TaskDeleteView(SuccessMessageMixin,
         permission to delete the task.
         """
         if not self.request.user.is_authenticated:
-            messages.error(self.request, texts.auth['auth_required'])
-            return redirect(reverse_lazy('login'))
 
-        messages.error(self.request, texts.auth['permission_required'])
-        return redirect(reverse_lazy('tasks_index'))
+
+class TaskView(LoginRequiredMixin, DetailView):
+    model = Task
+    template_name = 'tasks/detail.html'
+    context_object_name = 'task'
+    login_url = reverse_lazy('login')
+    extra_context = {
+        'base': texts.base,
+    }
