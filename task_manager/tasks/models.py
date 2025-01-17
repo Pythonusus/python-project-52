@@ -24,7 +24,6 @@ class Task(models.Model):
         verbose_name=task_model['status'],
         on_delete=models.PROTECT,
         related_name='tasks',
-        default=1,
     )
 
     author = models.ForeignKey(
