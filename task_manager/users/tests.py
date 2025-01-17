@@ -120,7 +120,13 @@ class TestUserUpdate(TestCase):
             reverse_lazy('user_update', args=[self.users[0].id]),
             follow=True
         )
-        self.assertRedirects(response, reverse_lazy('login'))
+        expected_url = (
+            f"{
+                reverse_lazy('login')}?next={
+                reverse_lazy('user_update', args=[self.users[0].id])
+            }"
+        )
+        self.assertRedirects(response, expected_url)
         self.assertContains(response, texts.auth['auth_required'])
 
     def test_user_update_with_no_permission(self):
@@ -162,7 +168,13 @@ class TestUserDelete(TestCase):
             reverse_lazy('user_delete', args=[self.users[0].id]),
             follow=True
         )
-        self.assertRedirects(response, reverse_lazy('login'))
+        expected_url = (
+            f"{
+                reverse_lazy('login')}?next={
+                reverse_lazy('user_delete', args=[self.users[0].id])
+            }"
+        )
+        self.assertRedirects(response, expected_url)
         self.assertContains(response, texts.auth['auth_required'])
 
     def test_user_delete_with_no_permission(self):
