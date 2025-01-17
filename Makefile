@@ -14,10 +14,10 @@ test:
 	poetry run python manage.py test
 
 messages-ru:
-	poetry run django-admin makemessages -l ru
+	poetry run django-admin makemessages --no-fuzzy-matching -l ru
 
 messages-en:
-	poetry run django-admin makemessages -l en
+	poetry run django-admin makemessages --no-fuzzy-matching -l en
 
 compile-messages:
 	poetry run django-admin compilemessages
