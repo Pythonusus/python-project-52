@@ -13,25 +13,25 @@
       <hr>
       <div class="container">
         <div class="row p-1">
-          <div class="col-3 fw-bold">{{ task_view.author }}:</div>
+          <div class="col-3 fw-bold">{{ task_view.author }}</div>
           <div class="col">{{ task.author }}</div>
         </div>
         <div class="row p-1">
-          <div class="col-3 fw-bold">{{ task_view.executor }}:</div>
+          <div class="col-3 fw-bold">{{ task_view.executor }}</div>
           <div class="col">{{ task.executor }}</div>
         </div>
         <div class="row p-1">
-          <div class="col-3 fw-bold">{{ task_view.status }}:</div>
+          <div class="col-3 fw-bold">{{ task_view.status }}</div>
           <div class="col">{{ task.status }}</div>
         </div>
         <div class="row p-1">
-          <div class="col-3 fw-bold">{{ task_view.created_at }}:</div>
+          <div class="col-3 fw-bold">{{ task_view.created_at }}</div>
           <div class="col">{{ task.created_at|date:"d.m.Y H:i" }}</div>
         </div>
         <div class="row p-1">
           <div class="col mt-4">
-            <a href="{% url 'task_update' task.id %}" class="btn btn-primary me-3">Изменить</a>
-            <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">Удалить</a>
+            <a href="{% url 'task_update' task.id %}" class="btn btn-primary me-3">{{ task_view.update }}</a>
+            <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">{{ task_view.delete }}</a>
           </div>
         </div>
       </div>
