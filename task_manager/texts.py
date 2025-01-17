@@ -161,3 +161,14 @@ delete_task = {
     'delete_success': _('Task deleted successfully'),
     'delete_error': _('Task can be deleted only by the author'),
 }
+
+# Texts for the task view page
+task_view = {
+    'task_view': _('Task view'),
+    'status': _('Status'),
+    'author': _('Author'),
+    'executor': _('Executor'),
+    'created_at': _('Created at'),
+    'edit': _('Edit'),
+    'delete': _('Delete'),
+}
