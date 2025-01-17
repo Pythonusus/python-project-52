@@ -211,8 +211,6 @@ msgid "Create task"
 msgstr "Create task"
 
 #: task_manager/texts.py:136
-#, fuzzy
-#| msgid "Delete task"
 msgid "Self tasks"
 msgstr "Self tasks"
 
