@@ -159,4 +159,5 @@ delete_task = {
     'delete_confirm': _('Are you sure you want to delete this task?'),
     'delete_anyway': _('Delete anyway'),
     'delete_success': _('Task deleted successfully'),
+    'delete_error': _('Task can be deleted only by the author'),
 }
