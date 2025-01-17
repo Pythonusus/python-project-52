@@ -19,6 +19,7 @@ dj-database-url = "^2.3.0"
 python-dotenv = "^1.0.1"
 psycopg2-binary = "^2.9.10"
 django-extensions = "^3.2.3"
+django-filter = "^24.3"
 
 
 [tool.poetry.group.dev.dependencies]
