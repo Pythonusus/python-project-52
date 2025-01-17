@@ -5,6 +5,17 @@
 <h1 class="my-4">{{ tasks_index.tasks }}</h1>
 <a href="{% url 'task_create' %}" class="btn btn-primary mb-3">{{ tasks_index.create_task }}</a>
 
+<div class="card mb-3">
+  <div class="card-body bg-light">
+    <form method="get" class="form">
+      {% bootstrap_form filter.form %}
+      <button type="submit" class="btn btn-primary">
+        {{ tasks_index.filter }}
+      </button>
+    </form>
+  </div>
+</div>
+
 <table class="table table-bordered table-hover text-nowrap" data-test="urls">
   <thead>
   <tr>

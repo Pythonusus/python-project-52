@@ -133,6 +133,8 @@ tasks_index = {
     'author': _('Author'),
     'executor': _('Executor'),
     'created_at': _('Created at'),
+    'self_tasks': _('Self tasks'),
+    'filter': _('Filter'),
     'edit': _('Edit'),
     'delete': _('Delete'),
 }
