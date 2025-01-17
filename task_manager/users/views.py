@@ -51,10 +51,9 @@ class UserUpdateView(SuccessMessageMixin,
     form_class = UserUpdateForm
     template_name = 'users/update.html'
     permission_required = 'auth.change_user'
-
     success_url = reverse_lazy('users_index')
     success_message = texts.update_user['update_success']
-
+    login_url = reverse_lazy('login')
     extra_context = {
         'base': texts.base,
         'update_user': texts.update_user,
@@ -70,12 +69,12 @@ class UserUpdateView(SuccessMessageMixin,
     def handle_no_permission(self):
         """
         Overriding handle_no_permission method from AccessMixin.
-        Handles the case when the user is not authenticated or doesn't have
-        permission to update the user.
+        If the user is not authenticated, redirects to the login page.
+        If the user has no permission, redirects to the tasks index page.
         """
         if not self.request.user.is_authenticated:
             messages.error(self.request, texts.auth['auth_required'])
-            return redirect(reverse_lazy('login'))
+            return super().handle_no_permission()
 
         messages.error(self.request, texts.auth['permission_required'])
         return redirect(reverse_lazy('users_index'))
@@ -93,10 +92,9 @@ class UserDeleteView(SuccessMessageMixin,
     model = get_user_model()
     template_name = 'users/delete.html'
     permission_required = 'auth.delete_user'
-
     success_url = reverse_lazy('users_index')
     success_message = texts.delete_user['delete_success']
-
+    login_url = reverse_lazy('login')
     extra_context = {
         'base': texts.base,
         'delete_user': texts.delete_user,
@@ -112,12 +110,12 @@ class UserDeleteView(SuccessMessageMixin,
     def handle_no_permission(self):
         """
         Overriding handle_no_permission method from AccessMixin.
-        Handles the case when the user is not authenticated or doesn't have
-        permission to delete the user.
+        If the user is not authenticated, redirects to the login page.
+        If the user has no permission, redirects to the users index page.
         """
         if not self.request.user.is_authenticated:
             messages.error(self.request, texts.auth['auth_required'])
-            return redirect(reverse_lazy('login'))
+            return super().handle_no_permission()
 
         messages.error(self.request, texts.auth['permission_required'])
         return redirect(reverse_lazy('users_index'))
