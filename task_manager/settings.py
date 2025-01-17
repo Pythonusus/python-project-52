@@ -147,7 +147,7 @@ USE_L10N = True
 
 # Directory for translation files
 LOCALE_PATHS = [
-    BASE_DIR / 'locale',
+    BASE_DIR / 'task_manager/locale',
 ]
 
 TIME_ZONE = 'UTC'
