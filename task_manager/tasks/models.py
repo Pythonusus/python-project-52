@@ -19,6 +19,9 @@ class Task(models.Model):
         blank=True,
         null=True,
     )
+
+    # Atleast one status must be created before creating a task
+    # Does not allow deleting statuses that are in use
     status = models.ForeignKey(
         Status,
         verbose_name=task_model['status'],
@@ -26,6 +29,8 @@ class Task(models.Model):
         related_name='tasks',
     )
 
+    # Author is set automatically by the view as the current user
+    # Does not allow deleting users that are authors of tasks
     author = models.ForeignKey(
         get_user_model(),
         verbose_name=task_model['author'],
@@ -33,6 +38,7 @@ class Task(models.Model):
         related_name='authored_tasks',
     )
 
+    # Does not allow deleting users that are executors of tasks
     executor = models.ForeignKey(
         get_user_model(),
         verbose_name=task_model['executor'],
