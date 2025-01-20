@@ -2,7 +2,12 @@ from django.test import Client, TestCase
 from django.urls import reverse_lazy
 
 from task_manager import texts
-from task_manager.factories import StatusFactory, TaskFactory, UserFactory
+from task_manager.factories import (
+    LabelFactory,
+    StatusFactory,
+    TaskFactory,
+    UserFactory,
+)
 from task_manager.tasks.models import Task
 
 
@@ -106,20 +111,47 @@ class TestTasksIndex(SetUpMixin, TestCase):
             )
 
     def test_tasks_index_with_filters(self):
-        new_task = TaskFactory(
+        # Task that matches all filters and created by the logged-in user
+        matching_task = TaskFactory(
             status=self.tasks[0].status,
             executor=self.tasks[0].executor,
+            labels=self.tasks[0].labels.all(),
             author=self.user,
         )
+
+        # Tasks that fail each filter condition
+        wrong_status_task = TaskFactory(
+            status=StatusFactory(),
+            executor=self.tasks[0].executor,
+            labels=self.tasks[0].labels.all(),
+            author=self.user,
+        )
+        wrong_executor_task = TaskFactory(
+            status=self.tasks[0].status,
+            executor=UserFactory(),
+            labels=self.tasks[0].labels.all(),
+            author=self.user,
+        )
+        wrong_author_task = TaskFactory(
+            status=self.tasks[0].status,
+            executor=self.tasks[0].executor,
+            labels=self.tasks[0].labels.all(),
+            author=UserFactory(),
+        )
+
         response = self.client.get(reverse_lazy('tasks_index'), {
             'status': self.tasks[0].status.id,
             'executor': self.tasks[0].executor.id,
+            'labels': [label.id for label in self.tasks[0].labels.all()],
             'self_tasks': 'on',
         })
+
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, new_task.name)
-        for task in self.tasks:
-            self.assertNotContains(response, task.name)
+        self.assertContains(response, matching_task.name)
+
+        self.assertNotContains(response, wrong_status_task.name)
+        self.assertNotContains(response, wrong_executor_task.name)
+        self.assertNotContains(response, wrong_author_task.name)
 
 
 class TestTaskCreate(SetUpMixin, TestCase):
@@ -132,12 +164,14 @@ class TestTaskCreate(SetUpMixin, TestCase):
 
     def test_task_with_full_data_create_success(self):
         status = StatusFactory()
+        labels = LabelFactory.create_batch(2)
         response = self.client.post(
             reverse_lazy('task_create'),
             {
                 'name': 'New task',
                 'description': 'New task description',
                 'status': status.id,
+                'labels': [label.id for label in labels],
                 'executor': self.user.id,
             },
             follow=True
@@ -150,6 +184,7 @@ class TestTaskCreate(SetUpMixin, TestCase):
         self.assertEqual(created_task.name, 'New task')
         self.assertEqual(created_task.description, 'New task description')
         self.assertEqual(created_task.status, status)
+        self.assertEqual(created_task.labels.count(), 2)
         self.assertEqual(created_task.executor, self.user)
         self.assertEqual(created_task.author, self.user)
 
@@ -176,7 +211,7 @@ class TestTaskCreate(SetUpMixin, TestCase):
         response = self.client.post(
             reverse_lazy('task_create'),
             {
-                'name': 'Task 1',
+                'name': self.tasks[0].name,
             },
         )
         self.assertEqual(response.status_code, 200)
@@ -269,6 +304,8 @@ class TestTaskView(SetUpMixin, TestCase):
         self.assertContains(response, self.tasks[0].name)
         self.assertContains(response, self.tasks[0].description)
         self.assertContains(response, self.tasks[0].status.name)
+        for label in self.tasks[0].labels.all():
+            self.assertContains(response, label.name)
         self.assertContains(response, self.tasks[0].author.username)
         self.assertContains(response, self.tasks[0].executor.username)
         self.assertContains(
