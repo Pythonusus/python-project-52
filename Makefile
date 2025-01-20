@@ -13,14 +13,14 @@ pylint:
 test:
 	poetry run python manage.py test
 
-messages-ru:
-	poetry run django-admin makemessages --no-fuzzy-matching -l ru
-
-messages-en:
-	poetry run django-admin makemessages --no-fuzzy-matching -l en
+messages:
+	poetry run python manage.py makemessages -l ru
+	poetry run python manage.py makemessages -l en
+	msgattrib --clear-fuzzy task_manager/locale/ru/LC_MESSAGES/django.po -o task_manager/locale/ru/LC_MESSAGES/django.po
+	msgattrib --clear-fuzzy task_manager/locale/en/LC_MESSAGES/django.po -o task_manager/locale/en/LC_MESSAGES/django.po
 
 compile-messages:
-	poetry run django-admin compilemessages
+	poetry run python manage.py compilemessages
 
 shell:
 	poetry run python manage.py shell_plus
