@@ -185,8 +185,6 @@ class TestStatusDelete(SetUpMixin, TestCase):
     def test_status_delete_with_tasks_failure(self):
         TaskFactory.create(
             status=self.statuses[0],
-            author=self.user,
-            executor=self.user,
         )
         response = self.client.post(
             reverse_lazy('status_delete', args=[self.statuses[0].id]),
