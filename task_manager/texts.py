@@ -118,6 +118,7 @@ task_model = {
     'name': _('Name'),
     'description': _('Description'),
     'status': _('Status'),
+    'label': _('Label'),
     'author': _('Author'),
     'executor': _('Executor'),
     'created_at': _('Created at'),
@@ -130,6 +131,7 @@ tasks_index = {
     'id': _('ID'),
     'name': _('Name'),
     'status': _('Status'),
+    'label': _('Label'),
     'author': _('Author'),
     'executor': _('Executor'),
     'created_at': _('Created at'),
@@ -166,9 +168,50 @@ delete_task = {
 task_view = {
     'task_view': _('Task view'),
     'status': _('Status'),
+    'label': _('Label'),
     'author': _('Author'),
     'executor': _('Executor'),
     'created_at': _('Created at'),
     'edit': _('Edit'),
     'delete': _('Delete'),
+}
+
+# Texts for the labels models
+label_model = {
+    'name': _('Name'),
+    'created_at': _('Created at'),
+}
+
+# Texts for the labels index page
+labels_index = {
+    'labels': _('Labels'),
+    'create_label': _('Create label'),
+    'id': _('ID'),
+    'name': _('Name'),
+    'created_at': _('Created at'),
+    'edit': _('Edit'),
+    'delete': _('Delete'),
+}
+
+# Texts for the labels create page
+create_label = {
+    'create_label': _('Create label'),
+    'create': _('Create'),
+    'create_success': _('Label created successfully'),
+}
+
+# Texts for the labels update page
+update_label = {
+    'update_label': _('Update label'),
+    'update': _('Update'),
+    'update_success': _('Label updated successfully'),
+}
+
+# Texts for the labels delete page
+delete_label = {
+    'delete_label': _('Delete label'),
+    'delete_confirm': _('Are you sure you want to delete this label?'),
+    'delete_anyway': _('Delete anyway'),
+    'delete_success': _('Label deleted successfully'),
+    'delete_error': _('Label cannot be deleted because it is in use'),
 }

@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django_filters import BooleanFilter, FilterSet, ModelChoiceFilter
 
 from task_manager import texts
+from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
 
@@ -18,6 +19,10 @@ class TaskFilter(FilterSet):
         queryset=User.objects.all(),
         label=texts.tasks_index['executor']
     )
+    label = ModelChoiceFilter(
+        queryset=Label.objects.all(),
+        label=texts.tasks_index['label']
+    )
     self_tasks = BooleanFilter(
         method='filter_self_tasks',
         widget=forms.CheckboxInput,
@@ -31,4 +36,4 @@ class TaskFilter(FilterSet):
 
     class Meta:
         model = Task
-        fields = ['status', 'executor', 'self_tasks']
+        fields = ['status', 'executor', 'label', 'self_tasks']

@@ -29,8 +29,20 @@
           <div class="col">{{ task.created_at|date:"d.m.Y H:i" }}</div>
         </div>
         <div class="row p-1">
+          <div class="col-3 fw-bold">{{ task_view.label }}:</div>
+          <div class="col">
+            {% if task.labels.all %}
+              <ul>
+                {% for label in task.labels.all %}
+                  <li>{{ label.name }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+        <div class="row p-1">
           <div class="col mt-4">
-            <a href="{% url 'task_update' task.id %}" class="btn btn-primary me-3">{{ task_view.update }}</a>
+            <a href="{% url 'task_update' task.id %}" class="btn btn-primary me-3">{{ task_view.edit }}</a>
             <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">{{ task_view.delete }}</a>
           </div>
         </div>

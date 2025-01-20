@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 from task_manager.texts import task_model
 
@@ -47,6 +48,15 @@ class Task(models.Model):
         blank=True,
         null=True,
     )
+
+    labels = models.ManyToManyField(
+        Label,
+        verbose_name=task_model['label'],
+        related_name='tasks',
+        blank=True,
+        through='TaskLabel',
+    )
+
     created_at = models.DateTimeField(
         verbose_name=task_model['created_at'],
         auto_now_add=True,
@@ -54,3 +64,16 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class TaskLabel(models.Model):
+    """
+    A model to store the relationship between a task and a label.
+    Default Django intermediate model is not enough for this case,
+    because it allows to delete labels that are in use.
+    """
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    label = models.ForeignKey(Label, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f'{self.task.name} - {self.label.name}'

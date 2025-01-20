@@ -2,5 +2,30 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<h1>Labels page!</h1>
+<h1 class="my-4">{{ labels_index.labels }}</h1>
+<a href="{% url 'label_create' %}" class="btn btn-primary mb-3">{{ labels_index.create_label }}</a>
+
+<table class="table table-bordered table-hover text-nowrap" data-test="urls">
+  <thead>
+  <tr>
+    <th>{{ labels_index.id }}</th>
+    <th>{{ labels_index.name }}</th>
+    <th>{{ labels_index.created_at }}</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for label in labels %}
+      <tr>
+        <td>{{ label.id }}</td>
+        <td>{{ label.name }}</td>
+        <td>{{ label.created_at|date:"d.m.Y H:i" }}</td>
+        <td class="d-flex flex-column">
+          <a href="{% url 'label_update' label.id %}" class="d-inline-block">{{ labels_index.edit }}</a>
+          <a href="{% url 'label_delete' label.id %}" class="d-inline-block">{{ labels_index.delete }}</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
