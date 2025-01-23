@@ -20,6 +20,7 @@ python-dotenv = "^1.0.1"
 psycopg2-binary = "^2.9.10"
 django-extensions = "^3.2.3"
 django-filter = "^24.3"
+rollbar = "^1.1.2"
 
 
 [tool.poetry.group.dev.dependencies]

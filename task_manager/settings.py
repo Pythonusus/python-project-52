@@ -171,6 +171,19 @@ STORAGES = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# Rollbar
+ROLLBAR = {
+    'access_token': os.getenv('ROLLBAR_SERVER_ACCESS_TOKEN'),
+    'environment': 'development' if DEBUG else 'production',
+    'code_version': '1.0',
+    'root': BASE_DIR,
+}
+
+# Only enable Rollbar if access token is provided
+if os.getenv('ROLLBAR_SERVER_ACCESS_TOKEN'):
+    MIDDLEWARE += ['rollbar.contrib.django.middleware.RollbarNotifierMiddleware']
+
 # Debug toolbar
 if DEBUG:
     INTERNAL_IPS = ['127.0.0.1']
