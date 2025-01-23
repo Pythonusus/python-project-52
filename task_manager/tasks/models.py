@@ -5,6 +5,8 @@ from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 from task_manager.texts import task_model
 
+User = get_user_model()
+
 
 class Task(models.Model):
     name = models.CharField(
@@ -33,7 +35,7 @@ class Task(models.Model):
     # Author is set automatically by the view as the current user
     # Does not allow deleting users that are authors of tasks
     author = models.ForeignKey(
-        get_user_model(),
+        User,
         verbose_name=task_model['author'],
         on_delete=models.PROTECT,
         related_name='authored_tasks',
@@ -41,7 +43,7 @@ class Task(models.Model):
 
     # Does not allow deleting users that are executors of tasks
     executor = models.ForeignKey(
-        get_user_model(),
+        User,
         verbose_name=task_model['executor'],
         on_delete=models.PROTECT,
         related_name='assigned_tasks',
