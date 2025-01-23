@@ -216,21 +216,6 @@ Django = ">=4.2"
 jinja = ["Jinja2 (>=3.0,<4)"]
 
 [[package]]
-name = "django-debug-toolbar"
-version = "4.4.6"
-description = "A configurable set of panels that display various debug information about the current request/response."
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "django_debug_toolbar-4.4.6-py3-none-any.whl", hash = "sha256:3beb671c9ec44ffb817fad2780667f172bd1c067dbcabad6268ce39a81335f45"},
-    {file = "django_debug_toolbar-4.4.6.tar.gz", hash = "sha256:36e421cb908c2f0675e07f9f41e3d1d8618dc386392ec82d23bcfcd5d29c7044"},
-]
-
-[package.dependencies]
-django = ">=4.2.9"
-sqlparse = ">=0.2"
-
-[[package]]
 name = "django-extensions"
 version = "3.2.3"
 description = "Extensions for Django"
@@ -673,4 +658,4 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "2e9b6fd05719bc241aef4ecbd202371ef29667528e206e8b887f32c9c86d8854"
+content-hash = "eec917a1c969d4f0583b692888127b121044e5bc311f93f93e866ceb58c1ed28"

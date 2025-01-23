@@ -183,9 +183,3 @@ ROLLBAR = {
 # Only enable Rollbar if access token is provided
 if os.getenv('ROLLBAR_SERVER_ACCESS_TOKEN'):
     MIDDLEWARE += ['rollbar.contrib.django.middleware.RollbarNotifierMiddleware']
-
-# Debug toolbar
-if DEBUG:
-    INTERNAL_IPS = ['127.0.0.1']
-    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
-    INSTALLED_APPS += ['debug_toolbar']
