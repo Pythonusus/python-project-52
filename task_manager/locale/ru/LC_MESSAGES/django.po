@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-20 20:48+0000\n"
+"POT-Creation-Date: 2025-01-26 17:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,7 +47,8 @@ msgstr "Выход"
 msgid "Statuses"
 msgstr "Статусы"
 
-#: task_manager/texts.py:15 task_manager/texts.py:187
+#: task_manager/texts.py:15 task_manager/texts.py:121 task_manager/texts.py:171
+#: task_manager/texts.py:187
 msgid "Labels"
 msgstr "Метки"
 
@@ -207,11 +208,6 @@ msgstr "Описание"
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/texts.py:121 task_manager/texts.py:134
-#: task_manager/texts.py:171
-msgid "Label"
-msgstr "Метки"
-
 #: task_manager/texts.py:123 task_manager/texts.py:136
 #: task_manager/texts.py:173
 msgid "Executor"
@@ -220,6 +216,10 @@ msgstr "Исполнитель"
 #: task_manager/texts.py:130 task_manager/texts.py:146
 msgid "Create task"
 msgstr "Создать задачу"
+
+#: task_manager/texts.py:134
+msgid "Label"
+msgstr "Метка"
 
 #: task_manager/texts.py:138
 msgid "Self tasks"
