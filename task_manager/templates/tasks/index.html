@@ -35,7 +35,7 @@
         <td><a href="{% url 'task_view' task.id %}">{{ task.name }}</a></td>
         <td>{{ task.status }}</td>
         <td>{{ task.author }}</td>
-        <td>{{ task.executor }}</td>
+        <td>{{ task.get_executor_name }}</td>
         <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
         <td class="d-flex flex-column">
           <a href="{% url 'task_update' task.id %}" class="d-inline-block">{{ tasks_index.edit }}</a>

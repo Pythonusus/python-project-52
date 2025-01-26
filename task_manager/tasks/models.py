@@ -67,6 +67,9 @@ class Task(models.Model):
     def __str__(self):
         return self.name
 
+    def get_executor_name(self):
+        return self.executor.get_full_name() if self.executor else ''
+
 
 class TaskLabel(models.Model):
     """
