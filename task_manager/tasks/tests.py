@@ -95,8 +95,8 @@ class TestTasksIndex(SetUpMixin, TestCase):
         for task in self.tasks:
             self.assertContains(response, task.name)
             self.assertContains(response, task.status.name)
-            self.assertContains(response, task.author.username)
-            self.assertContains(response, task.executor.username)
+            self.assertContains(response, task.author.get_full_name())
+            self.assertContains(response, task.executor.get_full_name())
             self.assertContains(
                 response,
                 task.created_at.strftime('%d.%m.%Y %H:%M')
@@ -306,8 +306,8 @@ class TestTaskView(SetUpMixin, TestCase):
         self.assertContains(response, self.tasks[0].status.name)
         for label in self.tasks[0].labels.all():
             self.assertContains(response, label.name)
-        self.assertContains(response, self.tasks[0].author.username)
-        self.assertContains(response, self.tasks[0].executor.username)
+        self.assertContains(response, self.tasks[0].author.get_full_name())
+        self.assertContains(response, self.tasks[0].executor.get_full_name())
         self.assertContains(
             response,
             self.tasks[0].created_at.strftime('%d.%m.%Y %H:%M')
