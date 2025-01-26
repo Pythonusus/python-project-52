@@ -138,6 +138,12 @@ class TestTasksIndex(SetUpMixin, TestCase):
             labels=self.tasks[0].labels.all(),
             author=UserFactory(),
         )
+        wrong_labels_task = TaskFactory(
+            status=self.tasks[0].status,
+            executor=self.tasks[0].executor,
+            labels=LabelFactory.create_batch(2),
+            author=self.user,
+        )
 
         response = self.client.get(reverse_lazy('tasks_index'), {
             'status': self.tasks[0].status.id,
@@ -152,6 +158,7 @@ class TestTasksIndex(SetUpMixin, TestCase):
         self.assertNotContains(response, wrong_status_task.name)
         self.assertNotContains(response, wrong_executor_task.name)
         self.assertNotContains(response, wrong_author_task.name)
+        self.assertNotContains(response, wrong_labels_task.name)
 
 
 class TestTaskCreate(SetUpMixin, TestCase):
