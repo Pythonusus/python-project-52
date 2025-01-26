@@ -18,3 +18,6 @@ class User(AbstractUser):
         blank=False,
         null=False,
     )
+
+    def __str__(self):
+        return self.get_full_name()
