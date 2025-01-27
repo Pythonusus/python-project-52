@@ -27,6 +27,10 @@ jobs:
           pip install poetry
           make install
 
+      - name: Collect static files
+        run: |
+          make static
+
       - name: Run linter
         run: |
           make lint

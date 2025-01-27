@@ -29,7 +29,7 @@ compile-messages:
 shell:
 	poetry run python manage.py shell_plus
 
-static: install
+static:
 	poetry run python manage.py collectstatic
 
 createsuperuser:
