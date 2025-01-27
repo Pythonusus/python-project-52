@@ -13,6 +13,10 @@ pylint:
 test:
 	poetry run python manage.py test
 
+test-coverage:
+	poetry run coverage run manage.py test
+	poetry run coverage xml --include=task_manager/* --omit=task_manager/settings.py,*/migrations/*,*/tests/*,tests.py
+
 messages:
 	poetry run python manage.py makemessages -l ru
 	msgattrib --clear-fuzzy task_manager/locale/ru/LC_MESSAGES/django.po -o task_manager/locale/ru/LC_MESSAGES/django.po
@@ -45,4 +49,4 @@ PORT := 8000
 start:
 	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) task_manager.wsgi
 
-.PHONY: install install-prod lint pylint messages-ru messages-en compile-messages shell static createsuperuser migrate dev build start
+.PHONY: install install-prod lint pylint test test-coverage messages compile-messages shell static createsuperuser migrate dev build start
