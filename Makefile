@@ -15,8 +15,8 @@ test:
 
 messages:
 	poetry run python manage.py makemessages -l ru
-	poetry run python manage.py makemessages -l en
 	msgattrib --clear-fuzzy task_manager/locale/ru/LC_MESSAGES/django.po -o task_manager/locale/ru/LC_MESSAGES/django.po
+	poetry run python manage.py makemessages -l en
 	msgattrib --clear-fuzzy task_manager/locale/en/LC_MESSAGES/django.po -o task_manager/locale/en/LC_MESSAGES/django.po
 
 compile-messages:
