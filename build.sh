@@ -10,6 +10,3 @@ make static
 
 # Apply migrations
 make migrate
-
-# Create a superuser
-make createsuperuser
