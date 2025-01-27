@@ -12,6 +12,7 @@ class IndexView(TemplateView):
     template_name = 'index.html'
     extra_context = {
         'base': texts.base,
+        'index': texts.index,
     }
 
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-26 17:36+0000\n"
+"POT-Creation-Date: 2025-01-27 22:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgstr "Менеджер задач"
 msgid "Logo"
 msgstr "Логотип"
 
-#: task_manager/texts.py:10 task_manager/texts.py:56
+#: task_manager/texts.py:10 task_manager/texts.py:70
 msgid "Users"
 msgstr "Пользователи"
 
@@ -35,7 +35,7 @@ msgstr "Пользователи"
 msgid "Login"
 msgstr "Вход"
 
-#: task_manager/texts.py:12 task_manager/texts.py:28
+#: task_manager/texts.py:12 task_manager/texts.py:42
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -43,252 +43,276 @@ msgstr "Регистрация"
 msgid "Logout"
 msgstr "Выход"
 
-#: task_manager/texts.py:14 task_manager/texts.py:84
+#: task_manager/texts.py:14 task_manager/texts.py:98
 msgid "Statuses"
 msgstr "Статусы"
 
-#: task_manager/texts.py:15 task_manager/texts.py:121 task_manager/texts.py:171
-#: task_manager/texts.py:187
+#: task_manager/texts.py:15 task_manager/texts.py:135 task_manager/texts.py:185
+#: task_manager/texts.py:201
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/texts.py:16 task_manager/texts.py:129
+#: task_manager/texts.py:16 task_manager/texts.py:143
 msgid "Tasks"
 msgstr "Задачи"
 
-#: task_manager/texts.py:17 task_manager/texts.py:122 task_manager/texts.py:135
-#: task_manager/texts.py:172
+#: task_manager/texts.py:17 task_manager/texts.py:136 task_manager/texts.py:149
+#: task_manager/texts.py:186
 msgid "Author"
 msgstr "Автор"
 
 #: task_manager/texts.py:22
+#| msgid "Task Manager"
+msgid "Welcome to the Task Manager!"
+msgstr "Добро пожаловать в Task Manager!"
+
+#: task_manager/texts.py:24
+msgid "This is a simple task manager for life build with Django."
+msgstr "Это простое приложение для управления задачами, построенное на Django."
+
+#: task_manager/texts.py:27
+msgid ""
+"You can create tasks with statuses and labelsfor them and assign them to "
+"users."
+msgstr "Вы можете создавать задачи со статусами и метками для них и назначать их пользователям."
+
+#: task_manager/texts.py:30
+msgid "See more"
+msgstr "Больше на странице с задачами"
+
+#: task_manager/texts.py:31
+msgid "Please, login or register to continue."
+msgstr "Пожалуйста, войдите или зарегистрируйтесь, чтобы продолжить."
+
+#: task_manager/texts.py:36
 msgid "First name"
 msgstr "Имя"
 
-#: task_manager/texts.py:23
+#: task_manager/texts.py:37
 msgid "Last name"
 msgstr "Фамилия"
 
-#: task_manager/texts.py:29
+#: task_manager/texts.py:43
 msgid "Register"
 msgstr "Зарегистрировать"
 
-#: task_manager/texts.py:30
+#: task_manager/texts.py:44
 msgid "User registered successfully"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: task_manager/texts.py:35
+#: task_manager/texts.py:49
 msgid "Edit user"
 msgstr "Изменение пользователя"
 
-#: task_manager/texts.py:36 task_manager/texts.py:103 task_manager/texts.py:154
-#: task_manager/texts.py:206
+#: task_manager/texts.py:50 task_manager/texts.py:117 task_manager/texts.py:168
+#: task_manager/texts.py:220
 msgid "Update"
 msgstr "Изменить"
 
-#: task_manager/texts.py:37
+#: task_manager/texts.py:51
 msgid "User updated successfully"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/texts.py:42
+#: task_manager/texts.py:56
 msgid "Delete user"
 msgstr "Удаление пользователя"
 
-#: task_manager/texts.py:43
+#: task_manager/texts.py:57
 msgid "Are you sure you want to delete this user?"
 msgstr "Вы уверены, что хотите удалить"
 
-#: task_manager/texts.py:44 task_manager/texts.py:111 task_manager/texts.py:162
-#: task_manager/texts.py:214
+#: task_manager/texts.py:58 task_manager/texts.py:125 task_manager/texts.py:176
+#: task_manager/texts.py:228
 msgid "Delete anyway"
 msgstr "Да, удалить"
 
-#: task_manager/texts.py:45
+#: task_manager/texts.py:59
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/texts.py:50
+#: task_manager/texts.py:64
 msgid "Permission required"
 msgstr "У вас нет прав для изменения другого пользователя."
 
-#: task_manager/texts.py:51
+#: task_manager/texts.py:65
 msgid "Authentication required"
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: task_manager/texts.py:57 task_manager/texts.py:86 task_manager/texts.py:131
-#: task_manager/texts.py:189
+#: task_manager/texts.py:71 task_manager/texts.py:100 task_manager/texts.py:145
+#: task_manager/texts.py:203
 msgid "ID"
 msgstr "ID"
 
-#: task_manager/texts.py:58
+#: task_manager/texts.py:72
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: task_manager/texts.py:59
+#: task_manager/texts.py:73
 msgid "Full name"
 msgstr "Полное имя"
 
-#: task_manager/texts.py:60 task_manager/texts.py:79 task_manager/texts.py:88
-#: task_manager/texts.py:124 task_manager/texts.py:137
-#: task_manager/texts.py:174 task_manager/texts.py:182
-#: task_manager/texts.py:191
+#: task_manager/texts.py:74 task_manager/texts.py:93 task_manager/texts.py:102
+#: task_manager/texts.py:138 task_manager/texts.py:151
+#: task_manager/texts.py:188 task_manager/texts.py:196
+#: task_manager/texts.py:205
 msgid "Created at"
 msgstr "Дата создания"
 
-#: task_manager/texts.py:61 task_manager/texts.py:89 task_manager/texts.py:140
-#: task_manager/texts.py:175 task_manager/texts.py:192
+#: task_manager/texts.py:75 task_manager/texts.py:103 task_manager/texts.py:154
+#: task_manager/texts.py:189 task_manager/texts.py:206
 msgid "Edit"
 msgstr "Изменить"
 
-#: task_manager/texts.py:62 task_manager/texts.py:90 task_manager/texts.py:141
-#: task_manager/texts.py:176 task_manager/texts.py:193
+#: task_manager/texts.py:76 task_manager/texts.py:104 task_manager/texts.py:155
+#: task_manager/texts.py:190 task_manager/texts.py:207
 msgid "Delete"
 msgstr "Удалить"
 
-#: task_manager/texts.py:67
+#: task_manager/texts.py:81
 msgid "Log in"
 msgstr "Войти"
 
-#: task_manager/texts.py:68
+#: task_manager/texts.py:82
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: task_manager/texts.py:73
+#: task_manager/texts.py:87
 msgid "You are logged out"
 msgstr "Вы разлогинены"
 
-#: task_manager/texts.py:78 task_manager/texts.py:87 task_manager/texts.py:118
-#: task_manager/texts.py:132 task_manager/texts.py:181
-#: task_manager/texts.py:190
+#: task_manager/texts.py:92 task_manager/texts.py:101 task_manager/texts.py:132
+#: task_manager/texts.py:146 task_manager/texts.py:195
+#: task_manager/texts.py:204
 msgid "Name"
 msgstr "Имя"
 
-#: task_manager/texts.py:85 task_manager/texts.py:95
+#: task_manager/texts.py:99 task_manager/texts.py:109
 msgid "Create status"
 msgstr "Создать статус"
 
-#: task_manager/texts.py:96 task_manager/texts.py:147 task_manager/texts.py:199
+#: task_manager/texts.py:110 task_manager/texts.py:161
+#: task_manager/texts.py:213
 msgid "Create"
 msgstr "Создать"
 
-#: task_manager/texts.py:97
+#: task_manager/texts.py:111
 msgid "Status created successfully"
 msgstr "Статус успешно создан"
 
-#: task_manager/texts.py:102
+#: task_manager/texts.py:116
 msgid "Update status"
 msgstr "Изменение статуса"
 
-#: task_manager/texts.py:104
+#: task_manager/texts.py:118
 msgid "Status updated successfully"
 msgstr "Статус успешно изменен"
 
-#: task_manager/texts.py:109
+#: task_manager/texts.py:123
 msgid "Delete status"
 msgstr "Удаление статуса"
 
-#: task_manager/texts.py:110
+#: task_manager/texts.py:124
 msgid "Are you sure you want to delete this status?"
 msgstr "Вы уверены, что хотите удалить"
 
-#: task_manager/texts.py:112
+#: task_manager/texts.py:126
 msgid "Status deleted successfully"
 msgstr "Статус успешно удален"
 
-#: task_manager/texts.py:113
+#: task_manager/texts.py:127
 msgid "Status cannot be deleted because it is in use"
 msgstr "Невозможно удалить статус, потому что он используется"
 
-#: task_manager/texts.py:119
+#: task_manager/texts.py:133
 msgid "Description"
 msgstr "Описание"
 
-#: task_manager/texts.py:120 task_manager/texts.py:133
-#: task_manager/texts.py:170
+#: task_manager/texts.py:134 task_manager/texts.py:147
+#: task_manager/texts.py:184
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/texts.py:123 task_manager/texts.py:136
-#: task_manager/texts.py:173
+#: task_manager/texts.py:137 task_manager/texts.py:150
+#: task_manager/texts.py:187
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/texts.py:130 task_manager/texts.py:146
+#: task_manager/texts.py:144 task_manager/texts.py:160
 msgid "Create task"
 msgstr "Создать задачу"
 
-#: task_manager/texts.py:134
+#: task_manager/texts.py:148
 msgid "Label"
 msgstr "Метка"
 
-#: task_manager/texts.py:138
+#: task_manager/texts.py:152
 msgid "Self tasks"
 msgstr "Только свои задачи"
 
-#: task_manager/texts.py:139
+#: task_manager/texts.py:153
 msgid "Filter"
 msgstr "Показать"
 
-#: task_manager/texts.py:148
+#: task_manager/texts.py:162
 msgid "Task created successfully"
 msgstr "Задача успешно создана"
 
-#: task_manager/texts.py:153
+#: task_manager/texts.py:167
 msgid "Update task"
 msgstr "Изменение задачи"
 
-#: task_manager/texts.py:155
+#: task_manager/texts.py:169
 msgid "Task updated successfully"
 msgstr "Задача успешно изменена"
 
-#: task_manager/texts.py:160
+#: task_manager/texts.py:174
 msgid "Delete task"
 msgstr "Удаление задачи"
 
-#: task_manager/texts.py:161
+#: task_manager/texts.py:175
 msgid "Are you sure you want to delete this task?"
 msgstr "Вы уверены, что хотите удалить"
 
-#: task_manager/texts.py:163
+#: task_manager/texts.py:177
 msgid "Task deleted successfully"
 msgstr "Задача успешно удалена"
 
-#: task_manager/texts.py:164
+#: task_manager/texts.py:178
 msgid "Task can be deleted only by the author"
 msgstr "Задачу может удалить только ее автор"
 
-#: task_manager/texts.py:169
+#: task_manager/texts.py:183
 msgid "Task view"
 msgstr "Просмотр задачи"
 
-#: task_manager/texts.py:188 task_manager/texts.py:198
+#: task_manager/texts.py:202 task_manager/texts.py:212
 msgid "Create label"
 msgstr "Создать метку"
 
-#: task_manager/texts.py:200
+#: task_manager/texts.py:214
 msgid "Label created successfully"
 msgstr "Метка успешно создана"
 
-#: task_manager/texts.py:205
+#: task_manager/texts.py:219
 msgid "Update label"
 msgstr "Изменение метки"
 
-#: task_manager/texts.py:207
+#: task_manager/texts.py:221
 msgid "Label updated successfully"
 msgstr "Метка успешно изменена"
 
-#: task_manager/texts.py:212
+#: task_manager/texts.py:226
 msgid "Delete label"
 msgstr "Удаление метки"
 
-#: task_manager/texts.py:213
+#: task_manager/texts.py:227
 msgid "Are you sure you want to delete this label?"
 msgstr "Вы уверены, что хотите удалить"
 
-#: task_manager/texts.py:215
+#: task_manager/texts.py:229
 msgid "Label deleted successfully"
 msgstr "Метка успешно удалена"
 
-#: task_manager/texts.py:216
+#: task_manager/texts.py:230
 msgid "Label cannot be deleted because it is in use"
 msgstr "Невозможно удалить метку, потому что она используется"

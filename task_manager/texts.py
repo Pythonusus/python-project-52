@@ -17,6 +17,20 @@ base = {
     'author': _('Author'),
 }
 
+# Texts for the index page
+index = {
+    'welcome': _('Welcome to the Task Manager!'),
+    'description': _(
+        'This is a simple task manager for life build with Django.'
+    ),
+    'possibilities': _(
+        'You can create tasks with statuses and labels'
+        'for them and assign them to users.'
+    ),
+    'see_more': _('See more'),
+    'login_or_register': _('Please, login or register to continue.'),
+}
+
 # Texts for user models
 user_model = {
     'first_name': _('First name'),

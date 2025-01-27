@@ -1,5 +1,23 @@
 {% extends 'layouts/base.html' %}
+{% load django_bootstrap5 %}
 
 {% block content %}
-<h1>Hello, World!</h1>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <h1 class="display-6 mb-4">{{ index.welcome }}</h1>
+      <p class="lead mb-4">{{ index.description }}</p>
+      {% if user.is_authenticated %}
+        <div class="mb-4">
+          <p class="mb-3">{{ index.possibilities }}</p>
+          <a href="{% url 'tasks_index' %}">{{ index.see_more }}</a>
+        </div>
+      {% else %}
+        <div class="p-4 bg-light rounded">
+          <a href="{% url 'login' %}">{{ index.login_or_register }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}
