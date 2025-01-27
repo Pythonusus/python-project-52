@@ -58,7 +58,17 @@ export DATABASE_URL={provider}://{user}:{password}@{host}:{port}/{db}
 make build
 ```
 
-5. Start Task Manager locally:
+5. Collect static files:
+```
+make static
+```
+
+6. Apply migrations:
+```
+make migrate
+```
+
+7. Start Task Manager locally:
 ```
 make start
 ```
