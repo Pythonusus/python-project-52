@@ -53,22 +53,12 @@ export SECRET_KEY=yourveryhardtobreakpassword
 export DATABASE_URL={provider}://{user}:{password}@{host}:{port}/{db}
 ```
 
-4. Install all neccessary dependencies using Poetry:
+4. Build project using Poetry:
 ```
 make build
 ```
 
-5. Collect static files:
-```
-make static
-```
-
-6. Apply migrations:
-```
-make migrate
-```
-
-7. Start Task Manager locally:
+5. Start Task Manager locally:
 ```
 make start
 ```
