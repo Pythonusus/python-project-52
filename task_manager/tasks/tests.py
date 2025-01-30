@@ -132,7 +132,7 @@ class TestTasksIndex(SetUpMixin, TestCase):
             labels=self.tasks[0].labels.all(),
             author=self.user,
         )
-        wrong_author_task = TaskFactory(
+        not_self_task = TaskFactory(
             status=self.tasks[0].status,
             executor=self.tasks[0].executor,
             labels=self.tasks[0].labels.all(),
@@ -145,6 +145,7 @@ class TestTasksIndex(SetUpMixin, TestCase):
             author=self.user,
         )
 
+        # Test with self_tasks=on
         response = self.client.get(reverse_lazy('tasks_index'), {
             'status': self.tasks[0].status.id,
             'executor': self.tasks[0].executor.id,
@@ -157,7 +158,22 @@ class TestTasksIndex(SetUpMixin, TestCase):
 
         self.assertNotContains(response, wrong_status_task.name)
         self.assertNotContains(response, wrong_executor_task.name)
-        self.assertNotContains(response, wrong_author_task.name)
+        self.assertNotContains(response, not_self_task.name)
+        self.assertNotContains(response, wrong_labels_task.name)
+
+        # Test with self_tasks=off
+        response = self.client.get(reverse_lazy('tasks_index'), {
+            'status': self.tasks[0].status.id,
+            'executor': self.tasks[0].executor.id,
+            'labels': [label.id for label in self.tasks[0].labels.all()],
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, matching_task.name)
+        self.assertContains(response, not_self_task.name)
+
+        self.assertNotContains(response, wrong_status_task.name)
+        self.assertNotContains(response, wrong_executor_task.name)
         self.assertNotContains(response, wrong_labels_task.name)
 
 
