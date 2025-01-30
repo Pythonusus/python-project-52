@@ -33,7 +33,7 @@ static:
 	poetry run python manage.py collectstatic
 
 createsuperuser:
-	poetry run python manage.py createsuperuser
+	poetry run python manage.py createsuperuser --noinput
 
 migrate:
 	poetry run python manage.py makemigrations
