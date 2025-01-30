@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.test.client import Client
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, path
 
 from task_manager import texts
 from task_manager.factories import UserFactory
@@ -106,3 +106,34 @@ class TestLogout(SetUpMixin, TestCase):
         self.assertRedirects(response, reverse_lazy('index'))
         self.assertFalse(response.wsgi_request.user.is_authenticated)
         self.assertContains(response, texts.logout['logout_info'])
+
+
+class TestErrors(SetUpMixin, TestCase):
+    def test_404(self):
+        with self.settings(DEBUG=False):
+            response = self.client.get('/nonexistent/', follow=False)
+            self.assertEqual(response.status_code, 404)
+            self.assertTemplateUsed(response, template_name='errors/404.html')
+
+    def test_500(self):
+        def bad_view(request):
+            raise Exception("Test 500 error")
+
+        # Create temporary URLconf
+        test_urlpatterns = [
+            path('trigger-error/', bad_view),
+        ]
+
+        # Creating a temporary TestUrlconf class, because Django ROOT_URLCONF
+        # is expecting a class, or an object, not a list of paths
+        class TestUrlconf:
+            urlpatterns = test_urlpatterns
+
+        with self.settings(ROOT_URLCONF=TestUrlconf, DEBUG=False):
+            with self.assertRaises(Exception):
+                response = self.client.get('/trigger-error/')
+                self.assertEqual(response.status_code, 500)
+                self.assertTemplateUsed(
+                    response,
+                    template_name='errors/500.html'
+                )
