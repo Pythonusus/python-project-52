@@ -15,7 +15,9 @@ test:
 
 test-coverage:
 	poetry run coverage run manage.py test
-	poetry run coverage xml --include=task_manager/* --omit=task_manager/settings.py,*/migrations/*,*/tests/*,tests.py
+	poetry run coverage xml --include=task_manager/* --omit=task_manager/settings.py,*/migrations/*,*/tests/*,tests.py,factories.py
+	poetry run coverage report --include=task_manager/* --omit=task_manager/settings.py,*/migrations/*,*/tests/*,tests.py,factories.py
+	poetry run coverage html --include=task_manager/* --omit=task_manager/settings.py,*/migrations/*,*/tests/*,tests.py,factories.py
 
 messages:
 	poetry run python manage.py makemessages -l ru
