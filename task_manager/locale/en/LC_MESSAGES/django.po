@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-27 22:00+0000\n"
+"POT-Creation-Date: 2025-01-30 13:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,6 @@ msgid "Author"
 msgstr "Author"
 
 #: task_manager/texts.py:22
-#| msgid "Task Manager"
 msgid "Welcome to the Task Manager!"
 msgstr "Task Manager"
 
@@ -314,3 +313,22 @@ msgstr "Label deleted successfully"
 #: task_manager/texts.py:230
 msgid "Label cannot be deleted because it is in use"
 msgstr "Label cannot be deleted because it is in use"
+
+#: task_manager/texts.py:235
+msgid "404 error"
+msgstr "404 page not found"
+
+#: task_manager/texts.py:236
+msgid "Page not found"
+msgstr "You told your friends you weren’t bringing your phone, to try and experience what travel was like back in the day. You bought a "
+"map and a bottle of water and carried your camera for the money shot. But the map was from 2005 and the landscape had "
+"changed. So here you are, in the middle of a large field, that the map continues to claim is a page you are looking for."
+
+#: task_manager/texts.py:241
+msgid "500 error"
+msgstr "500 internal server error"
+
+#: task_manager/texts.py:242
+msgid "Internal server error"
+msgstr "The dog stole our server wires and now we have to wait for the new ones to arrive. "
+"In the meantime, we are trying to fix the problem."

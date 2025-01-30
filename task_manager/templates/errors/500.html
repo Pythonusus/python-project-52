@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5 text-center">
+  <h1 class="display-6 mb-4">{{ error500.error500 }}</h1>
+  <img src="{% static 'errors/500.png' %}" alt="500 image" class="img-fluid">
+  <p class="lead">{{ error500.internal_server_error }}</p>
+</div>
+{% endblock %}
+

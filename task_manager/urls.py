@@ -28,3 +28,8 @@ urlpatterns = [
     path('tasks/', include('task_manager.tasks.urls')),
     path('admin/', admin.site.urls),
 ]
+
+# Error handlers
+# Work only in DEBUG=False
+handler404 = views.error_404_view
+handler500 = views.error_500_view

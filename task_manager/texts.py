@@ -229,3 +229,15 @@ delete_label = {
     'delete_success': _('Label deleted successfully'),
     'delete_error': _('Label cannot be deleted because it is in use'),
 }
+
+# Texts for the 404 error page
+error404 = {
+    'error404': _('404 error'),
+    'page_not_found': _('Page not found'),
+}
+
+# Texts for the 500 error page
+error500 = {
+    'error500': _('500 error'),
+    'internal_server_error': _('Internal server error'),
+}
