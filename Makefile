@@ -42,7 +42,7 @@ migrate:
 	poetry run python manage.py migrate
 
 dev: migrate
-	DEBUG=True poetry run python manage.py runserver
+	poetry run python manage.py runserver
 
 build:
 	./build.sh
