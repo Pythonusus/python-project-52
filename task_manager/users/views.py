@@ -11,6 +11,32 @@ from task_manager import texts
 from task_manager.users.forms import UserForm, UserUpdateForm
 
 
+class OwnershipRequiredMixin(PermissionRequiredMixin):
+    """
+    Checks if the user is authenticated.
+    Allows managing only users own profiles.
+    """
+    def has_permission(self):
+        """
+        Overriding has_permission method from PermissionRequiredMixin.
+        Checks if managed user is the current user.
+        """
+        return self.get_object().id == self.request.user.id
+
+    def handle_no_permission(self):
+        """
+        Overriding handle_no_permission method from AccessMixin.
+        If the user is not authenticated, redirects to the login page.
+        If the user has no permission, redirects to the users index page.
+        """
+        if not self.request.user.is_authenticated:
+            messages.error(self.request, texts.auth['auth_required'])
+            return super().handle_no_permission()
+
+        messages.error(self.request, texts.auth['permission_required'])
+        return redirect(reverse_lazy('users_index'))
+
+
 class UsersIndexView(ListView):
     model = get_user_model()
     template_name = 'users/index.html'
@@ -40,7 +66,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
 
 class UserUpdateView(SuccessMessageMixin,
                      LoginRequiredMixin,
-                     PermissionRequiredMixin,
+                     OwnershipRequiredMixin,
                      UpdateView):
     """
     Update a user. Users cannot update other users.
@@ -59,30 +85,10 @@ class UserUpdateView(SuccessMessageMixin,
         'update_user': texts.update_user,
     }
 
-    def has_permission(self):
-        """
-        Overriding has_permission method from PermissionRequiredMixin.
-        Allows updating only the current user.
-        """
-        return self.get_object().id == self.request.user.id
-
-    def handle_no_permission(self):
-        """
-        Overriding handle_no_permission method from AccessMixin.
-        If the user is not authenticated, redirects to the login page.
-        If the user has no permission, redirects to the tasks index page.
-        """
-        if not self.request.user.is_authenticated:
-            messages.error(self.request, texts.auth['auth_required'])
-            return super().handle_no_permission()
-
-        messages.error(self.request, texts.auth['permission_required'])
-        return redirect(reverse_lazy('users_index'))
-
 
 class UserDeleteView(SuccessMessageMixin,
                      LoginRequiredMixin,
-                     PermissionRequiredMixin,
+                     OwnershipRequiredMixin,
                      DeleteView):
     """
     Delete a user. Users cannot delete other users.
@@ -99,23 +105,3 @@ class UserDeleteView(SuccessMessageMixin,
         'base': texts.base,
         'delete_user': texts.delete_user,
     }
-
-    def has_permission(self):
-        """
-        Overriding has_permission method from PermissionRequiredMixin.
-        Allows deleting only the current user.
-        """
-        return self.get_object().id == self.request.user.id
-
-    def handle_no_permission(self):
-        """
-        Overriding handle_no_permission method from AccessMixin.
-        If the user is not authenticated, redirects to the login page.
-        If the user has no permission, redirects to the users index page.
-        """
-        if not self.request.user.is_authenticated:
-            messages.error(self.request, texts.auth['auth_required'])
-            return super().handle_no_permission()
-
-        messages.error(self.request, texts.auth['permission_required'])
-        return redirect(reverse_lazy('users_index'))
