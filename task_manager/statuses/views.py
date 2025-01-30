@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
@@ -71,15 +70,16 @@ class StatusDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         """
-        Override the post method to handle the ProtectedError exception.
-        If a ProtectedError occurs, show an error message and redirect to
-        the statuses index page.
+        Override the post method to check if the status is used in any tasks
+        before deleting it.
+        If status is in use, show an error message and redirect
+        to the statuses index page.
         """
-        try:
-            return super().post(request, *args, **kwargs)
-        except ProtectedError:
+        in_use = self.get_object().tasks.exists()
+        if in_use:
             messages.error(
                 request,
                 texts.delete_status['delete_error']
             )
             return redirect(self.success_url)
+        return super().post(request, *args, **kwargs)
