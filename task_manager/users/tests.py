@@ -138,6 +138,22 @@ class TestUserUpdate(TestCase):
         self.assertRedirects(response, reverse_lazy('users_index'))
         self.assertContains(response, texts.auth['permission_required'])
 
+    def test_user_update_failure(self):
+        self.client.force_login(self.users[0])
+        response = self.client.post(
+            reverse_lazy('user_update', args=[self.users[0].id]),
+            {
+                'first_name': 'Vasya',
+                'last_name': 'Pupkin',
+                'username': self.users[1].username,
+                'password1': self.users[0].password,
+                'password2': self.users[0].password,
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        errors = response.context['form'].errors
+        self.assertIn('username', errors)
+
 
 class TestUserDelete(TestCase):
     def setUp(self):
