@@ -5,6 +5,7 @@ dist/
 .venv/
 .coverage
 coverage.xml
+htmlcov/
 .pytest_cache/
 .vscode/
 .env
