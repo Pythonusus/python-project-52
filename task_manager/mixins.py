@@ -5,30 +5,32 @@ from django.urls import reverse_lazy
 
 from task_manager import texts
 
-OWNER_MAPPING = {
-    'user': lambda x: x.id,
-    'author': lambda x: x.author.id,
-}
-
 
 class OwnershipRequiredMixin(PermissionRequiredMixin):
     """
     Checks if the user is authenticated and has appropriate permissions.
     For users: allows managing only their own profiles.
     For tasks: allows managing only tasks authored by the user.
+
+    Valid ownership_field values:
+        - 'user' for users
+        - 'author' for tasks
     """
-    ownership_field = None  # 'user' for users, 'author' for tasks
-    permission_denied_redirect_url = None     # 'users_index' or 'tasks_index'
+    ownership_field = None
+    permission_denied_redirect_url = None
     permission_denied_message = None
+
+    _owner_mapping = {
+        'user': lambda x: x.id,
+        'author': lambda x: x.author.id,
+    }
 
     def get_owner(self):
         """
         Returns the owner of the model object based on the ownership_field.
-        Maps ownership fields to their corresponding values.
         """
         obj = self.get_object()
-
-        return OWNER_MAPPING[self.ownership_field](obj)
+        return self._owner_mapping[self.ownership_field](obj)
 
     def has_permission(self):
         """
