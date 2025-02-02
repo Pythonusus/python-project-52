@@ -32,7 +32,7 @@ shell:
 	poetry run python manage.py shell_plus
 
 static:
-	poetry run python manage.py collectstatic
+	poetry run python manage.py collectstatic --noinput
 
 createsuperuser:
 	poetry run python manage.py createsuperuser --noinput
