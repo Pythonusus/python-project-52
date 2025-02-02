@@ -1,40 +1,12 @@
-from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import (LoginRequiredMixin,
-                                        PermissionRequiredMixin)
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from task_manager import texts
+from task_manager.mixins import OwnershipRequiredMixin
 from task_manager.users.forms import UserForm, UserUpdateForm
-
-
-class OwnershipRequiredMixin(PermissionRequiredMixin):
-    """
-    Checks if the user is authenticated.
-    Allows managing only users own profiles.
-    """
-    def has_permission(self):
-        """
-        Overriding has_permission method from PermissionRequiredMixin.
-        Checks if managed user is the current user.
-        """
-        return self.get_object().id == self.request.user.id
-
-    def handle_no_permission(self):
-        """
-        Overriding handle_no_permission method from AccessMixin.
-        If the user is not authenticated, redirects to the login page.
-        If the user has no permission, redirects to the users index page.
-        """
-        if not self.request.user.is_authenticated:
-            messages.error(self.request, texts.auth['auth_required'])
-            return super().handle_no_permission()
-
-        messages.error(self.request, texts.auth['permission_required'])
-        return redirect(reverse_lazy('users_index'))
 
 
 class UsersIndexView(ListView):
@@ -76,7 +48,12 @@ class UserUpdateView(SuccessMessageMixin,
     model = get_user_model()
     form_class = UserUpdateForm
     template_name = 'users/update.html'
-    permission_required = 'auth.change_user'
+
+    # OwnershipRequiredMixin settings
+    ownership_field = 'user'
+    permission_denied_message = texts.auth['permission_required']
+    permission_denied_redirect_url = 'users_index'
+
     success_url = reverse_lazy('users_index')
     success_message = texts.update_user['update_success']
     login_url = reverse_lazy('login')
@@ -98,6 +75,12 @@ class UserDeleteView(SuccessMessageMixin,
     model = get_user_model()
     template_name = 'users/delete.html'
     permission_required = 'auth.delete_user'
+
+    # OwnershipRequiredMixin settings
+    ownership_field = 'user'
+    permission_denied_message = texts.auth['permission_required']
+    permission_denied_redirect_url = 'users_index'
+
     success_url = reverse_lazy('users_index')
     success_message = texts.delete_user['delete_success']
     login_url = reverse_lazy('login')

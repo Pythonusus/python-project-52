@@ -1,13 +1,12 @@
-from django.contrib import messages
-from django.contrib.auth.mixins import (LoginRequiredMixin,
-                                        PermissionRequiredMixin)
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import redirect
+
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django_filters.views import FilterView
 
 from task_manager import texts
+from task_manager.mixins import OwnershipRequiredMixin
 from task_manager.tasks.filters import TaskFilter
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.models import Task
@@ -70,7 +69,7 @@ class TaskUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 class TaskDeleteView(SuccessMessageMixin,
                      LoginRequiredMixin,
-                     PermissionRequiredMixin,
+                     OwnershipRequiredMixin,
                      DeleteView):
     """
     Delete a task. Tasks can only be deleted by the author.
@@ -80,6 +79,10 @@ class TaskDeleteView(SuccessMessageMixin,
     model = Task
     template_name = 'tasks/delete.html'
     permission_required = 'tasks.delete_task'
+
+    # OwnershipRequiredMixin settings
+    ownership_field = 'author'
+    permission_denied_redirect_url = 'tasks_index'
     permission_denied_message = texts.delete_task['delete_error']
     success_url = reverse_lazy('tasks_index')
     success_message = texts.delete_task['delete_success']
@@ -88,24 +91,6 @@ class TaskDeleteView(SuccessMessageMixin,
         'base': texts.base,
         'delete_task': texts.delete_task,
     }
-
-    def has_permission(self):
-        """
-        Overriding has_permission method from PermissionRequiredMixin.
-        Allows deleting tasks only by the author.
-        """
-        return self.get_object().author == self.request.user
-
-    def handle_no_permission(self):
-        """
-        Overriding handle_no_permission method from AccessMixin.
-        If the user is not authenticated, redirects to the login page.
-        If the user has no permission, redirects to the tasks index page.
-        """
-        if not self.request.user.is_authenticated:
-            return super().handle_no_permission()
-        messages.error(self.request, self.permission_denied_message)
-        return redirect('tasks_index')
 
 
 class TaskView(LoginRequiredMixin, DetailView):
