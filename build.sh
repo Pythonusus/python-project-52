@@ -12,4 +12,6 @@ make static
 make migrate
 
 # Create superuser
-make createsuperuser
+make createsuperuser || true
+
+echo "Build completed successfully!"
